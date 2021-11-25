@@ -1,0 +1,137 @@
+#include <stdio.h>
+#include <locale.h>
+/* Requisitos:
+
+
+- Criar uma função que manipula arrays e mostrar o uso dela com arrays
+
+- Criar uma função que recebe um ponteiro como argumento 
+- Criar uma função que manipula um vector
+- Criar um vector de ponteiros do tipo double no main e usar essa vector para algo
+- Criar duas structs com cinco campos de tipos diferentes no main e manipular essas structs usando duas funções
+- Criar um array de structs
+- Manipular uma struct usando um ponteiro */
+
+
+/* ----------------------------------------------- */
+/* - Criar duas structs com cinco campos de tipos diferentes no main e manipular essas structs usando duas funções */
+void imprime_cabec(void);
+
+typedef struct {
+    int id;
+    char nome[20];
+    char mundo[20];
+    float valorMercadoLivre[5];
+    double valor;
+    
+} Personagem ;
+
+
+struct novo_Atributos {
+  int forca;
+  float magia;
+  double power;
+  char nomehabilidadeEspecial[20];
+  bool ativo;
+
+};
+
+
+
+
+//- Criar uma função que manipula um vector
+void preencherPessoas(Personagem pessoas[], int qtde) {
+    for (int i = 0; i < qtde; i++) {
+
+        printf(" Digite a nome do personagem: ");
+        scanf("%s", pessoas[i].nome);
+
+        printf(" Digite o ID do personagem: ");
+        scanf("%d", &pessoas[i].id);
+
+        printf("Agora digite o valor  do seu personagem: R$ \n");
+        scanf("%lf", &pessoas[i].valor);
+
+        
+        printf("Qual mundo seu personagem pertece ?   \n");
+        scanf("%s", &pessoas[i].mundo[20]);
+             
+        printf("Qual o seu nivel de experienca:  \n");
+        scanf("%f", &pessoas[i].valorMercadoLivre[5]);
+             
+    }
+}
+
+
+void preencherHabilidades(Personagem pessoas[], int qtde) {
+
+  struct novo_Atributos habilidade;
+  habilidade.forca = 10;
+  habilidade.magia = 22.22;
+  habilidade.power = 87.22;
+  habilidade.ativo = 1;
+  
+  
+
+
+    for (int i = 0; i < qtde; i++) {
+        
+/* ---------------------------- */
+         printf("Digite o nome da sua habilidade Especial : \n");
+        scanf("%s", &habilidade.nomehabilidadeEspecial[20]);
+/* ---------------------------- */
+
+         printf("Digite o o valor da força do seu personagem: \n");
+        scanf("%d", &habilidade.forca);
+/* ---------------------------- */
+        printf("Digite o o valor da magia do seu personagem: \n");
+        scanf("%f", &habilidade.magia);
+/* ---------------------------- */
+        printf("Agora digite o poder(power) do seu personagem: \n");
+        scanf("%lf", &habilidade.power);
+            
+/* ---------------------------- */
+            
+        printf(" Situação do Personagem: ATIVO  \n");
+
+
+
+        printf(" \n DADOS DO %s DE CADASTRADOS! \n",  pessoas[i].nome);
+    }
+}
+
+void  imprime_personagem(Personagem pessoas[], int qtde); 
+
+int main() {
+
+   setlocale(LC_ALL, "Portuguese");
+
+
+    imprime_cabec();
+    printf("Insira a quantidade de personagem que serão cadastrados: ");
+    int qtde;
+    scanf("%d", &qtde);
+    printf("\nQTD de personagem a Cadastrar: %d\n", qtde);
+
+    Personagem pessoas[qtde];
+    preencherPessoas(pessoas, qtde);
+    preencherHabilidades(pessoas, qtde);
+    imprime_personagem(pessoas, qtde);
+}
+
+
+void imprime_cabec(void)
+{
+  printf("******************************\n");
+  printf("* BEM VINDO - UFPA 2021 SAMUEL NOVAES *\n");
+  printf("******************************\n\n");
+  
+  return;/* retorno de uma função void */
+}
+
+
+void imprime_personagem(Personagem pessoas[], int qtde){
+  for(int i= 0;i < qtde ; i++ ){
+  printf("Nome do Personagem: %s ", pessoas[i].nome);
+  }
+}
